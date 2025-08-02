@@ -10,6 +10,8 @@ export interface JobApplication {
   status: "Applied" | "Interviewing" | "Offer" | "Rejected"
   applicationDate: string
   notes: string
+  location?: string // Added location field
+  weather?: string // Added weather field
   createdAt: string
 }
 

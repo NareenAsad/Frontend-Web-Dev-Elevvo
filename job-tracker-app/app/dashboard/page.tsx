@@ -8,13 +8,21 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Plus, Search, Calendar, Building2, Briefcase } from "lucide-react"
+import {
+  Plus,
+  Search,
+  Calendar,
+  Building2,
+  Briefcase,
+  MapPin,
+  CloudSun,
+} from "lucide-react"
 
 const statusColors = {
-  Applied: "bg-blue-100 text-blue-800",
-  Interviewing: "bg-yellow-100 text-yellow-800",
-  Offer: "bg-green-100 text-green-800",
-  Rejected: "bg-red-100 text-red-800",
+  Applied: "bg-indigo-200 text-indigo-800",
+  Interviewing: "bg-teal-200 text-teal-800",
+  Offer: "bg-emerald-200 text-emerald-800",
+  Rejected: "bg-rose-200 text-rose-800",
 }
 
 export default function Dashboard() {
@@ -43,13 +51,13 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent hover:underline">
             Dashboard
           </h1>
-          <p className="text-gray-300 mt-1">Track and manage your job applications</p>
+          <p className="text-white mt-1">Track and manage your job applications</p>
         </div>
         <Link href="/add-job">
-          <Button className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 border-0 shadow-lg hover:shadow-orange-500/25 transform hover:scale-105 transition-all duration-200">
+          <Button className="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white border-0 shadow-lg hover:shadow-emerald-400/30 transform hover:scale-105 transition-all duration-200">
             <Plus className="h-4 w-4 mr-2" />
             Add New Job
           </Button>
@@ -59,22 +67,21 @@ export default function Dashboard() {
       {/* Stats Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
         {[
-          { label: "Total Applications", value: stats.total, gradient: "from-gray-600 to-gray-800" },
-          { label: "Applied", value: stats.applied, gradient: "from-blue-500 to-indigo-600" },
-          { label: "Interviewing", value: stats.interviewing, gradient: "from-amber-500 to-orange-600" },
-          { label: "Offers", value: stats.offers, gradient: "from-emerald-500 to-green-600" },
-          { label: "Rejected", value: stats.rejected, gradient: "from-red-500 to-rose-600" },
+          { label: "Total Applications", value: stats.total, gradient: "from-slate-500 to-slate-700" },
+          { label: "Applied", value: stats.applied, gradient: "from-indigo-500 to-indigo-600" },
+          { label: "Interviewing", value: stats.interviewing, gradient: "from-teal-500 to-teal-600" },
+          { label: "Offers", value: stats.offers, gradient: "from-emerald-500 to-emerald-600" },
+          { label: "Rejected", value: stats.rejected, gradient: "from-rose-500 to-rose-600" },
         ].map((stat, index) => (
           <Card
             key={stat.label}
-            className="hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 transform hover:-translate-y-1 animate-slide-up border-0 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md hover:from-white/20 hover:to-white/10"
-            style={{ animationDelay: `${index * 100}ms` }}
+            className="hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 hover:-translate-y-2 border border-emerald-800 bg-white/10 backdrop-blur-md"
           >
             <CardContent className="p-4">
               <div className={`text-2xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
                 {stat.value}
               </div>
-              <div className="text-sm text-gray-300">{stat.label}</div>
+              <div className="text-sm text-emerald-100">{stat.label}</div>
             </CardContent>
           </Card>
         ))}
@@ -83,54 +90,44 @@ export default function Dashboard() {
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
           <Input
             placeholder="Search by company or job title..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 bg-white/10 border-emerald-500/30 text-white placeholder-gray-400 focus:border-amber-400 focus:ring-amber-400/20"
+            className="pl-10 bg-white border border-gray-300 text-gray-800 placeholder-gray-500 focus:border-teal-400 focus:ring-teal-400/20"
           />
         </div>
         <Select value={statusFilter} onValueChange={setStatusFilter}>
-          <SelectTrigger className="w-full sm:w-48 bg-white/10 border-emerald-500/30 text-white focus:border-amber-400">
+          <SelectTrigger className="w-full sm:w-48 bg-white border border-gray-300 text-gray-800 focus:border-teal-400">
             <SelectValue placeholder="Filter by status" />
           </SelectTrigger>
-          <SelectContent className="bg-gray-900 border-emerald-500/30">
-            <SelectItem value="all" className="text-white hover:bg-emerald-500/20">
-              All Statuses
-            </SelectItem>
-            <SelectItem value="Applied" className="text-white hover:bg-emerald-500/20">
-              Applied
-            </SelectItem>
-            <SelectItem value="Interviewing" className="text-white hover:bg-emerald-500/20">
-              Interviewing
-            </SelectItem>
-            <SelectItem value="Offer" className="text-white hover:bg-emerald-500/20">
-              Offer
-            </SelectItem>
-            <SelectItem value="Rejected" className="text-white hover:bg-emerald-500/20">
-              Rejected
-            </SelectItem>
+          <SelectContent className="bg-white border border-gray-300">
+            {["all", "Applied", "Interviewing", "Offer", "Rejected"].map((status) => (
+              <SelectItem key={status} value={status} className="text-gray-800 hover:bg-gray-100">
+                {status === "all" ? "All Statuses" : status}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
 
       {/* Job Applications List */}
       {filteredJobs.length === 0 ? (
-        <Card className="border-0 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md">
+        <Card className="hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 hover:-translate-y-2 border border-emerald-800 bg-white/10 backdrop-blur-md">
           <CardContent className="p-8 text-center">
-            <Briefcase className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-white mb-2">
+            <Briefcase className="h-12 w-12 text-gray-500 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">
               {state.jobs.length === 0 ? "No job applications yet" : "No applications match your filters"}
             </h3>
-            <p className="text-gray-300 mb-4">
+            <p className="text-white mb-4">
               {state.jobs.length === 0
                 ? "Start tracking your job applications by adding your first one."
                 : "Try adjusting your search or filter criteria."}
             </p>
             {state.jobs.length === 0 && (
               <Link href="/add-job">
-                <Button className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 border-0">
+                <Button className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white border-0">
                   <Plus className="h-4 w-4 mr-2" />
                   Add Your First Job
                 </Button>
@@ -143,7 +140,7 @@ export default function Dashboard() {
           {filteredJobs.map((job, index) => (
             <Link key={job.id} href={`/job/${job.id}`}>
               <Card
-                className="hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 cursor-pointer transform hover:-translate-y-1 animate-slide-up border-0 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md hover:from-white/20 hover:to-white/10 group"
+                className="hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 hover:-translate-y-1 border border-emerald-800 bg-white/10 backdrop-blur-md"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <CardContent className="p-6">
@@ -152,10 +149,10 @@ export default function Dashboard() {
                       <div className="flex items-start gap-3">
                         <Building2 className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
                         <div className="min-w-0 flex-1">
-                          <h3 className="text-lg font-semibold text-white truncate group-hover:text-amber-400 transition-colors">
+                          <h3 className="text-lg font-semibold text-white truncate group-hover:text-teal-300 transition-colors">
                             {job.jobTitle}
                           </h3>
-                          <p className="text-gray-300 truncate">{job.companyName}</p>
+                          <p className="text-emerald-200 truncate">{job.companyName}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 mt-3">
@@ -165,10 +162,22 @@ export default function Dashboard() {
                         </span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-col items-end gap-2 flex-shrink-0 self-start">
                       <Badge className={`${statusColors[job.status]} transition-all duration-200 hover:scale-105`}>
                         {job.status}
                       </Badge>
+                      {job.location && (
+                        <div className="flex items-center gap-2 text-teal-200 mt-1">
+                          <MapPin className="h-4 w-4" />
+                          <span className="text-sm">{job.location}</span>
+                        </div>
+                      )}
+                      {job.weather && (
+                        <div className="flex items-center gap-2 text-indigo-200 mt-1">
+                          <CloudSun className="h-4 w-4" />
+                          <span className="text-sm">{job.weather}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </CardContent>

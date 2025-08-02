@@ -4,32 +4,32 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
+  --background: 240 10% 3.9%; /* Dark gray background */
+  --foreground: 0 0% 98%; /* Light gray foreground text */
+  --card: 240 10% 3.9%; /* Dark gray card background */
+  --card-foreground: 0 0% 98%; /* Light gray card text */
+  --popover: 240 10% 3.9%; /* Dark gray popover background */
+  --popover-foreground: 0 0% 98%; /* Light gray popover text */
+  --primary: 0 0% 98%; /* Light primary for text/icons on dark background */
+  --primary-foreground: 240 5.9% 10%; /* Dark foreground for primary elements */
+  --secondary: 240 3.7% 15.9%; /* Slightly lighter dark gray for secondary elements */
+  --secondary-foreground: 0 0% 98%; /* Light gray foreground for secondary elements */
+  --muted: 240 3.7% 15.9%; /* Muted background */
+  --muted-foreground: 240 5% 64.9%; /* Muted foreground text */
+  --accent: 240 3.7% 15.9%; /* Accent background */
+  --accent-foreground: 0 0% 98%; /* Accent foreground text */
+  --destructive: 0 62.8% 30.6%; /* Darker red for destructive actions */
+  --destructive-foreground: 0 0% 98%; /* Light gray for destructive text */
+  --border: 240 3.7% 15.9%; /* Darker border color */
+  --input: 240 3.7% 15.9%; /* Darker input border */
+  --ring: 217.2 91.2% 59.8%; /* Blue for focus ring (can be adjusted for dark theme) */
+  --chart-1: oklch(0.7 0.15 260); /* Adjusted chart colors for dark theme */
+  --chart-2: oklch(0.8 0.1 160);
+  --chart-3: oklch(0.85 0.12 70);
+  --chart-4: oklch(0.75 0.18 300);
+  --chart-5: oklch(0.78 0.16 20);
   --radius: 0.625rem;
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.205 0 0); /* Keeping sidebar dark for contrast */
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);

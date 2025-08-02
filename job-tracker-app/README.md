@@ -12,6 +12,7 @@ A simple yet powerful web application to help you track and manage your job appl
 *   **Responsive Design**: A clean and intuitive user interface that works well on both desktop and mobile devices.
 *   **Light Theme**: A bright and clear visual theme for comfortable use.
 *   **UI Animations**: Subtle animations for a smooth and engaging user experience.
+*   **Current Location & Weather**: Automatically detect your location and display current weather data using a weather API integration.
 
 ## 🚀 Technologies Used
 
@@ -23,6 +24,7 @@ This project is built with modern web technologies:
 *   **Context API**: For global state management of job applications.
 *   **`localStorage`**: For client-side data persistence.
 *   **Lucide React**: For beautiful and customizable icons.
+*   **OpenWeatherMap API** *(or similar)*: For real-time weather information based on the user's geolocation.
 
 ## 🛠️ Setup and Installation
 
@@ -53,7 +55,12 @@ Make sure you have the following installed:
     yarn install
     \`\`\`
 
-3.  **Run the development server:**
+3.  **Configure Environment Variables (for weather API):**
+    Create a .env.local file and add your API key:
+    \`\`\`NEXT_PUBLIC_WEATHER_API_KEY=your_api_key_here
+    \`\`\`
+
+4.  **Run the development server:**
     Start the Next.js development server:
     \`\`\`bash
     npm run dev
