@@ -30,13 +30,7 @@ export default function JobDetails({ params }: JobDetailsProps) {
     setErrors,
     isSubmitting,
     setIsSubmitting,
-    validateForm,
-    handleDetectLocation,
-    handleFetchWeather,
-    isDetectingLocation,
-    isFetchingWeather,
-    locationError,
-    weatherError,
+    validateForm
   } = useJobForm()
 
   useEffect(() => {
@@ -176,12 +170,6 @@ export default function JobDetails({ params }: JobDetailsProps) {
               formData={editData}
               handleInputChange={handleInputChange}
               errors={errors}
-              handleDetectLocation={handleDetectLocation}
-              handleFetchWeather={handleFetchWeather}
-              isDetectingLocation={isDetectingLocation}
-              isFetchingWeather={isFetchingWeather}
-              locationError={locationError}
-              weatherError={weatherError}
             />
           ) : (
             <JobDetailsDisplay job={job} />

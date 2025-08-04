@@ -1,6 +1,6 @@
 "use client"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, Building2, MapPin, CloudSun } from "lucide-react"
+import { Calendar, Building2 } from "lucide-react"
 import type { JobApplication } from "@/contexts/job-context"
 
 const statusColors = {
@@ -38,22 +38,6 @@ export function JobDetailsDisplay({ job }: JobDetailsDisplayProps) {
           })}
         </span>
       </div>
-
-      {/* Display Location */}
-      {job.location && (
-        <div className="flex items-center gap-2 ">
-          <MapPin className="h-5 w-5 text-gray-400" />
-          <span className="text-sm text-white">Location: {job.location}</span>
-        </div>
-      )}
-
-      {/* Display Weather */}
-      {job.weather && (
-        <div className="flex items-center gap-2">
-          <CloudSun className="h-5 w-5 text-gray-400" />
-          <span className="text-sm text-white">Weather: {job.weather}</span>
-        </div>
-      )}
 
       {job.notes && (
         <div className="space-y-2">
