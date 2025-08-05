@@ -1,2 +1,11 @@
-# env files
-.env*
+# API Keys and sensitive configuration
+js/config.js
+
+# Development files
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/

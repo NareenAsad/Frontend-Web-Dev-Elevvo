@@ -9,10 +9,19 @@ class Utils {
             return 'Tomorrow';
         }
 
-        return date.toLocaleDateString('en-US', {
+        return date.toLocaleDateString('en-US', { 
             weekday: 'short',
             month: 'short',
             day: 'numeric'
+        });
+    }
+
+    static formatDateTime(date) {
+        return date.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
         });
     }
 
@@ -33,7 +42,7 @@ class Utils {
     }
 
     static getGeolocationErrorMessage(error) {
-        switch (error.code) {
+        switch(error.code) {
             case error.PERMISSION_DENIED:
                 return 'Location access denied by user';
             case error.POSITION_UNAVAILABLE:
@@ -43,5 +52,11 @@ class Utils {
             default:
                 return 'An unknown error occurred while retrieving location';
         }
+    }
+
+    static capitalizeWords(str) {
+        return str.replace(/\w\S*/g, (txt) => 
+            txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+        );
     }
 }
