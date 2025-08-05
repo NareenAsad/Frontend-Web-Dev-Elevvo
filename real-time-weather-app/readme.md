@@ -217,5 +217,4 @@ Contributions are welcome! Here's how you can help:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.tionality
-![Search Features](https://via.placeholder.com/600x400/667eea/ffffff?text=Search+Features)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
