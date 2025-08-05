@@ -107,8 +107,7 @@ weather-dashboard/
 ├── README.md              # This file
 ├── .env                   # Environment variables (create this)
 ├── .gitignore            # Git ignore file
-└── assets/               # Optional: for images and additional assets
-    └── screenshots/      # App screenshots for README
+
 ```
 
 ## 🔧 Configuration
@@ -218,44 +217,5 @@ Contributions are welcome! Here's how you can help:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [WeatherAPI.com](https://www.weatherapi.com/) for providing the weather data API
-- [Font Awesome](https://fontawesome.com/) for the beautiful icons
-- [CSS Gradient](https://cssgradient.io/) for gradient inspiration
-- The web development community for design inspiration and best practices
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-
-1. Check the [Issues](https://github.com/yourusername/weather-dashboard/issues) page
-2. Create a new issue with detailed information
-3. Contact the maintainer at your-email@example.com
-
-## 📊 Browser Support
-
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
----
-
-**Made with ❤️ and ☀️ by [Your Name](https://github.com/yourusername)**
-
----
-
-## 📸 Screenshots
-
-### Desktop View
-![Desktop View](https://via.placeholder.com/800x500/667eea/ffffff?text=Desktop+View)
-
-### Mobile View
-![Mobile View](https://via.placeholder.com/300x600/667eea/ffffff?text=Mobile+View)
-
-### Search Functionality
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.tionality
 ![Search Features](https://via.placeholder.com/600x400/667eea/ffffff?text=Search+Features)
