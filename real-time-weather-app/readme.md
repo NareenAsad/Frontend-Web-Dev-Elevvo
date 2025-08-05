@@ -21,7 +21,7 @@ A beautiful, responsive weather dashboard that provides real-time weather inform
 
 ## 🚀 Demo
 
-You can try the weather dashboard [here](https://your-demo-url.com) (replace with your actual demo URL).
+You can try the weather dashboard [here](https://weather-app-drab-omega-25.vercel.app/) (replace with your actual demo URL).
 
 ## 🛠️ Technologies Used
 
