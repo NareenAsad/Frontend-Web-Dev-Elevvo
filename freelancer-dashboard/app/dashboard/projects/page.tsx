@@ -16,20 +16,86 @@ import {
 import { Plus, Calendar, DollarSign } from 'lucide-react'
 import { ProjectStats } from "@/components/projects/project-stats"
 import { ProjectFilters } from "@/components/projects/project-filters"
-import { projects } from "@/data/projects"
+import { ProjectFormModel } from "@/components/projects/project-form-model"
+import { ProjectEditModel } from "@/components/projects/project-edit-model"
+import { ProjectDetailsModel } from "@/components/projects/project-details-model"
+import { ProjectActions } from "@/components/projects/project-actions"
+import { projects as initialProjects } from "@/data/projects"
 import { getStatusIcon, getStatusColor, getPriorityColor } from "@/utils/project-helpers"
+import { useLocalStorage } from "@/hooks/use-local-storage"
+import { useToast } from "@/hooks/use-toast"
 
 export default function Projects() {
+  const [projects, setProjects] = useLocalStorage('freelance-projects', initialProjects)
+  
+  // Ensure projects is always an array to prevent runtime errors
+  const safeProjects = projects || []
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
   const [viewMode, setViewMode] = useState<"table" | "cards">("table")
+  const [showProjectForm, setShowProjectForm] = useState(false)
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [showDetailsModal, setShowDetailsModal] = useState(false)
+  const [selectedProject, setSelectedProject] = useState<any>(null)
+  const { toast } = useToast()
 
-  const filteredProjects = projects.filter(project => {
+  const filteredProjects = safeProjects.filter(project => {
     const matchesSearch = project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          project.client.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesStatus = statusFilter === "all" || project.status === statusFilter
     return matchesSearch && matchesStatus
   })
+
+  const handleAddProject = (newProject: any) => {
+    setProjects(prev => [...prev, newProject])
+    toast({
+      title: "Project Created",
+      description: `${newProject.name} has been added successfully.`,
+    })
+  }
+
+  const handleEditProject = (project: any) => {
+    setSelectedProject(project)
+    setShowEditModal(true)
+  }
+
+  const handleUpdateProject = (updatedProject: any) => {
+    setProjects(prev => prev.map(p => p.id === updatedProject.id ? updatedProject : p))
+    toast({
+      title: "Project Updated",
+      description: `${updatedProject.name} has been updated successfully.`,
+    })
+  }
+
+  const handleViewProject = (project: any) => {
+    setSelectedProject(project)
+    setShowDetailsModal(true)
+  }
+
+  const handleDuplicateProject = (project: any) => {
+    const duplicatedProject = {
+      ...project,
+      id: Date.now(),
+      name: `${project.name} (Copy)`,
+      status: "Planning",
+      progress: 0
+    }
+    setProjects(prev => [...prev, duplicatedProject])
+    toast({
+      title: "Project Duplicated",
+      description: `${duplicatedProject.name} has been created.`,
+    })
+  }
+
+  const handleDeleteProject = (projectId: number) => {
+    const project = safeProjects.find(p => p.id === projectId)
+    setProjects(prev => prev.filter(p => p.id !== projectId))
+    toast({
+      title: "Project Deleted",
+      description: `${project?.name} has been deleted successfully.`,
+      variant: "destructive",
+    })
+  }
 
   return (
     <div className="space-y-6">
@@ -43,7 +109,10 @@ export default function Projects() {
             Manage and track all your freelance projects
           </p>
         </div>
-        <Button className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600">
+        <Button 
+          onClick={() => setShowProjectForm(true)}
+          className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
+        >
           <Plus className="w-4 h-4 mr-2" />
           New Project
         </Button>
@@ -76,6 +145,7 @@ export default function Projects() {
                     <TableHead>Progress</TableHead>
                     <TableHead>Deadline</TableHead>
                     <TableHead>Budget</TableHead>
+                    <TableHead className="w-[50px]">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -109,6 +179,15 @@ export default function Projects() {
                         </TableCell>
                         <TableCell>{new Date(project.deadline).toLocaleDateString()}</TableCell>
                         <TableCell>${project.budget.toLocaleString()}</TableCell>
+                        <TableCell>
+                          <ProjectActions
+                            project={project}
+                            onDelete={handleDeleteProject}
+                            onEdit={handleEditProject}
+                            onView={handleViewProject}
+                            onDuplicate={handleDuplicateProject}
+                          />
+                        </TableCell>
                       </TableRow>
                     )
                   })}
@@ -123,14 +202,23 @@ export default function Projects() {
                   <Card key={project.id} className="bg-gray-50/50 dark:bg-gray-700/50 border-gray-200/50 dark:border-gray-600/50">
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between">
-                        <div>
+                        <div className="flex-1">
                           <CardTitle className="text-lg">{project.name}</CardTitle>
                           <CardDescription>{project.client}</CardDescription>
                         </div>
-                        <Badge className={getStatusColor(project.status)}>
-                          <StatusIcon className="w-3 h-3 mr-1" />
-                          {project.status}
-                        </Badge>
+                        <div className="flex items-center space-x-2">
+                          <Badge className={getStatusColor(project.status)}>
+                            <StatusIcon className="w-3 h-3 mr-1" />
+                            {project.status}
+                          </Badge>
+                          <ProjectActions
+                            project={project}
+                            onDelete={handleDeleteProject}
+                            onEdit={handleEditProject}
+                            onView={handleViewProject}
+                            onDuplicate={handleDuplicateProject}
+                          />
+                        </div>
                       </div>
                     </CardHeader>
                     <CardContent className="space-y-3">
@@ -163,8 +251,54 @@ export default function Projects() {
               })}
             </div>
           )}
+
+          {filteredProjects.length === 0 && (
+            <div className="text-center py-12">
+              <div className="text-gray-400 mb-4">
+                <Calendar className="w-12 h-12 mx-auto" />
+              </div>
+              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+                No projects found
+              </h3>
+              <p className="text-gray-500 dark:text-gray-400 mb-4">
+                {searchTerm || statusFilter !== "all" 
+                  ? "Try adjusting your search or filter criteria."
+                  : "Get started by creating your first project."
+                }
+              </p>
+              {!searchTerm && statusFilter === "all" && (
+                <Button 
+                  onClick={() => setShowProjectForm(true)}
+                  className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Create Your First Project
+                </Button>
+              )}
+            </div>
+          )}
         </CardContent>
       </Card>
+
+      {/* Modals */}
+      <ProjectFormModel
+        open={showProjectForm}
+        onOpenChange={setShowProjectForm}
+        onSubmit={handleAddProject}
+      />
+
+      <ProjectEditModel
+        open={showEditModal}
+        onOpenChange={setShowEditModal}
+        onSubmit={handleUpdateProject}
+        project={selectedProject}
+      />
+
+      <ProjectDetailsModel
+        open={showDetailsModal}
+        onOpenChange={setShowDetailsModal}
+        project={selectedProject}
+      />
     </div>
   )
 }

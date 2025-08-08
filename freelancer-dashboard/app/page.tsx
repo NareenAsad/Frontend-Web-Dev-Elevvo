@@ -1,14 +1,7 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { HeroSection } from "@/components/intro/hero-section"
 
 export default function Home() {
-  const router = useRouter()
-  
-  useEffect(() => {
-    router.push("/dashboard")
-  }, [router])
-  
-  return null
+  return <HeroSection />
 }
