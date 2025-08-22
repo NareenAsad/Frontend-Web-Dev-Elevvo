@@ -3,7 +3,7 @@
 A modern, responsive **admin dashboard** built for a fictional freelance client.
 Designed with a **clean gradient UI**, animated backgrounds, and **real-time project insights**.
 
-![Dashboard Preview](https://frontend-web-dev-elevvo.vercel.app/?text=Freelance+Dashboard)
+[Live Demo](https://frontend-web-dev-elevvo.vercel.app/?text=Freelance+Dashboard)
 
 ---
 
