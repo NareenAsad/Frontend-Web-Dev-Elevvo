@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Save, User } from "lucide-react"
 import { ProfileOverview } from "@/components/profile/profile-overview"
 import { PersonalInformation } from "@/components/profile/personal-information"
-import { PreferencesSettings } from "@/components/profile/preferences-settings"
-import { NotificationSettingsCard } from "@/components/profile/notification-settings"
 import { SecuritySettings } from "@/components/profile/security-settings"
 import { useProfile } from "@/contexts/profile-context"
 import { useToast } from "@/hooks/use-toast"
@@ -14,13 +12,6 @@ import { useState } from "react"
 export default function Profile() {
   const { profile, updateProfile, isEditing, setIsEditing } = useProfile()
   const { toast } = useToast()
-  const [darkMode, setDarkMode] = useState(false)
-
-  const [notifications, setNotifications] = useState({
-    email: true,
-    push: false,
-    marketing: true,
-  })
 
   const handleSave = () => {
     setIsEditing(false)
@@ -80,11 +71,6 @@ export default function Profile() {
         {/* Profile Details */}
         <div className="lg:col-span-2 space-y-6">
           <PersonalInformation profile={profile} isEditing={isEditing} onInputChange={handleInputChange} />
-
-          <PreferencesSettings darkMode={darkMode} setDarkMode={setDarkMode} />
-
-          <NotificationSettingsCard notifications={notifications} setNotifications={setNotifications} />
-
           <SecuritySettings isEditing={isEditing} />
         </div>
       </div>
