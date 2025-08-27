@@ -5,6 +5,12 @@ Built with **React, Tailwind CSS, TypeScript, Heroicons, and Lucide Icons**, the
 
 ---
 
+## 🌐 Live Demo
+
+🔗 [View Demo](https://taskflow-landingpage.netlify.app/)
+
+---
+
 ## ✨ Features
 
 ✅ Hero Section with app name, tagline & call-to-action button  
@@ -66,7 +72,6 @@ taskflow-landing/
    ```
 
    * For Vite → open [http://localhost:5173](http://localhost:5173)
-   * For Next.js → open [http://localhost:3000](http://localhost:3000)
 
 4. **Build for production**
 
@@ -86,3 +91,6 @@ taskflow-landing/
   * `lucide-react`
 
 ---
+
+Do you want me to also add **deployment instructions** (Netlify + Vercel) inside the README so anyone cloning your repo can redeploy it easily?
+```
