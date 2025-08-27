@@ -19,10 +19,6 @@ A beautiful, responsive weather dashboard that provides real-time weather inform
   - UV index
   - 3-day forecast
 
-## 🚀 Demo
-
-You can try the weather dashboard [here](https://weather-app-drab-omega-25.vercel.app/).
-
 ## 🛠️ Technologies Used
 
 - **HTML5**: Semantic markup structure
