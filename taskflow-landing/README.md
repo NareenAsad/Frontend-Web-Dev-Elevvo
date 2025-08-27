@@ -5,12 +5,6 @@ Built with **React, Tailwind CSS, TypeScript, Heroicons, and Lucide Icons**, the
 
 ---
 
-## 🌐 Live Demo
-
-🔗 [View Demo](https://taskflow-landingpage.netlify.app/)
-
----
-
 ## ✨ Features
 
 ✅ Hero Section with app name, tagline & call-to-action button  
@@ -26,7 +20,7 @@ Built with **React, Tailwind CSS, TypeScript, Heroicons, and Lucide Icons**, the
 ## 🛠️ Tech Stack
 
 - **React + TypeScript**
-- **Vite** (bundler / dev server) or Next.js *(depending on your setup)*  
+- **Vite** (bundler / dev server)  
 - **Tailwind CSS** (with custom color system)  
 - **Heroicons** & **Lucide-react** (for icons)  
 
@@ -71,7 +65,7 @@ taskflow-landing/
    npm run dev
    ```
 
-   * For Vite → open [http://localhost:5173](http://localhost:5173)
+   👉 Open [http://localhost:5173](http://localhost:5173)
 
 4. **Build for production**
 
