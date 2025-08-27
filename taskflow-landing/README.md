@@ -91,6 +91,3 @@ taskflow-landing/
   * `lucide-react`
 
 ---
-
-Do you want me to also add **deployment instructions** (Netlify + Vercel) inside the README so anyone cloning your repo can redeploy it easily?
-```
