@@ -139,5 +139,3 @@ Open-sourced under the **MIT License**.
 📊 *A modern dashboard solution for freelance project management*
 
 ---
-
-👉 Do you want me to also **make it more portfolio-style** (like emphasizing “this was built as a showcase project” for hiring managers/clients), or should it stay more **client-facing** (like real product documentation)?
