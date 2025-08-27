@@ -2,8 +2,6 @@
 
 A simple yet powerful web application to help you track and manage your job applications with ease. Stay organized, monitor your progress, and streamline your job search journey.
 
-[Live Demo](https://https://job-tracker-app-nu.vercel.app/)
-
 ## ✨ Features
 
 *   **Dashboard Overview**: Get a quick glance at your total applications, and breakdown by status (Applied, Interviewing, Offer, Rejected).
